@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Library.Models.Joueur
+namespace Library.Models.Playeur
 {
     class PublicJoueur
     {

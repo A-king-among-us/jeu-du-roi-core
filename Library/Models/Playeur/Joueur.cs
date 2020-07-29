@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Library.Models.Joueur
+namespace Library.Models.Playeur
 {
     public class Joueur
     {

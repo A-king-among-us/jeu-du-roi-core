@@ -9,5 +9,6 @@ namespace Library
         public string Name { get; set; }
         public string Icon { get; set; } //fontawesomme icon 
         public string Type { get; set; } //type d'objet
+        public void Use();
     }
 }
