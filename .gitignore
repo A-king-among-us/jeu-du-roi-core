@@ -1,6 +1,6 @@
 
-# Created by https://www.toptal.com/developers/gitignore/api/csharp,visualstudio,visualstudiocode
-# Edit at https://www.toptal.com/developers/gitignore?templates=csharp,visualstudio,visualstudiocode
+# Created by https://www.toptal.com/developers/gitignore/api/csharp,visualstudio,visualstudiocode,java-web
+# Edit at https://www.toptal.com/developers/gitignore?templates=csharp,visualstudio,visualstudiocode,java-web
 
 ### Csharp ###
 ## Ignore Visual Studio temporary files, build results, and
@@ -14,6 +14,9 @@
 *.user
 *.userosscache
 *.sln.docstates
+.suo
+.vs
+.vs/
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
@@ -357,6 +360,10 @@ MigrationBackup/
 # Ionide (cross platform F# VS Code tools) working folder
 .ionide/
 
+### Java-Web ###
+## ignoring target file
+target/
+
 ### VisualStudioCode ###
 .vscode/*
 !.vscode/settings.json
@@ -527,4 +534,4 @@ MigrationBackup/
 
 # Ionide (cross platform F# VS Code tools) working folder
 
-# End of https://www.toptal.com/developers/gitignore/api/csharp,visualstudio,visualstudiocode
+# End of https://www.toptal.com/developers/gitignore/api/csharp,visualstudio,visualstudiocode,java-web
