@@ -6,6 +6,7 @@ namespace Library.Models.Playeur
     {
         public string Name { get; private set; }
         public string Surname { get; private set; }
+        public string ConnectionID { get; private set; }
         private bool IsKing = false;
 
         //Statistique variable 
