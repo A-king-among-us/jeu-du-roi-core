@@ -12,5 +12,16 @@ namespace WebApp.Hubs
         {
             await Clients.All.SendAsync("ReceiveMessage", user, message);
         }
-    }
+
+        public override Task OnConnectedAsync()
+        {
+            return Task.CompletedTask;
+        }
+
+        public override Task OnDisconnectedAsync(Exception exception)
+        {
+            Console.WriteLine("A user is disconnedcted"+Context.ConnectionId);
+            return Task.CompletedTask;
+        }
+    }   
 }
