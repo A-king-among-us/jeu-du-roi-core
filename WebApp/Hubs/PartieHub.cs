@@ -46,7 +46,9 @@ namespace WebApp.Hubs
 
             if (_ListDeJoueur.Count > 15&&Game==null)
             {
-
+                //ici en gros on lance la partie
+                Game = new Thread(Main);
+                Game.Start();
             }
         }
         public async Task GetMaxPointstat() => await Clients.Caller.SendAsync("MaxPointStat", Joueur.MaxPointStat);
