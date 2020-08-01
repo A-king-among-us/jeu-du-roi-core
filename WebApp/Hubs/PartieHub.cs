@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.SignalR;
 using System.Threading.Tasks;
 using Library.Models.Playeur;
 using System.Threading;
+using System.Text.RegularExpressions;
 
 namespace WebApp.Hubs
 {
@@ -58,7 +59,7 @@ namespace WebApp.Hubs
 
         public async Task GetAllPlayeur()
         {
-            List<PublicJoueur> publicjoueur = new List<PublicJoueur>;
+            List<PublicJoueur> publicjoueur = new List<PublicJoueur>();
             foreach (Joueur treatedone in _ListDeJoueur)
                 publicjoueur.Add(new PublicJoueur(treatedone));
             await Clients.Caller.SendAsync("ListPlayeur", publicjoueur);
@@ -72,8 +73,12 @@ namespace WebApp.Hubs
         {
             Console.WriteLine("A user is disconnedcted"+Context.ConnectionId);
             if (_ListDeJoueur.Contains(new Joueur(Context.ConnectionId)))
+            {
                 Groups.RemoveFromGroupAsync(Context.ConnectionId, GroupName);
                 _ListDeJoueur.Find(e => e.ConnectionID == Context.ConnectionId).die();
+                Clients.Group(GroupName).SendAsync("FromTheKing", $"{ _ListDeJoueur.Find(e => e.ConnectionID == Context.ConnectionId).Name} Est mort en fuillant... il a fait une chute de son lits"); //ajouter différent message random
+            }
+
             return Task.CompletedTask;
         }
     }   
