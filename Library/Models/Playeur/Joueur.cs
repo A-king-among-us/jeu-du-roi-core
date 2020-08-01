@@ -9,6 +9,23 @@ namespace Library.Models.Playeur
         public string ConnectionID { get; private set; }
         private bool IsKing = false;
 
+        public Joueur(int agi, int str, int vit, int intel, int perce,string name,string surname,string connectionID)
+        {
+            if((agi+str+vit+intel+perce)!=MaxPointStat)
+            {
+                _agi = agi;
+                _str = str;
+                _vit = vit;
+                _intel = intel;
+                _perce = perce;
+                Name = name;
+                Surname = surname;
+                ConnectionID = connectionID;
+            }
+            
+        }
+        public Joueur(string connectionID) => ConnectionID = connectionID;
+
         //Statistique variable 
         private int _agi = 0;
         private int _str = 0;
@@ -17,11 +34,11 @@ namespace Library.Models.Playeur
         private int _perce = 0;
 
         //Statistique property
-        public int AGI { get => _agi; private set { _agi = value >= 0 && value <= 20 ? value : _agi; } }
-        public int STR { get => _str; private set { _str = value >= 0 && value <= 20 ? value : _str; } }
-        public int VIT { get => _vit; private set { _vit = value >= 0 && value <= 20 ? value : _vit; } }
-        public int INT { get => _intel; private set { _intel = value >= 0 && value <= 20 ? value : _intel; } }
-        public int PER { get => _perce; private set { _perce = value >= 0 && value <= 20 ? value : _perce; } }
+        public int AGI { get => _agi; private set { _agi = value >= 0 && value <= MaxPerStat ? value : _agi; } }
+        public int STR { get => _str; private set { _str = value >= 0 && value <= MaxPerStat ? value : _str; } }
+        public int VIT { get => _vit; private set { _vit = value >= 0 && value <= MaxPerStat ? value : _vit; } }
+        public int INT { get => _intel; private set { _intel = value >= 0 && value <= MaxPerStat ? value : _intel; } }
+        public int PER { get => _perce; private set { _perce = value >= 0 && value <= MaxPerStat ? value : _perce; } }
 
         //Status variable 
         private int _money = 0;
@@ -46,6 +63,9 @@ namespace Library.Models.Playeur
         public int MaxLove => 50; //date a live ?
         public int MaxStamina => _vit + _stamina + _str; //a équilibrer j'ai pas enore spéciallement d'idée
 
+        public static int MaxPerStat = 20;
+        public static int MaxPointStat = 40;
+
         //Status Spéciphique
         public bool IsInLove => _love >= 30;
         public bool IsTired => _stamina <= 0;
@@ -58,5 +78,9 @@ namespace Library.Models.Playeur
         public bool Canbuy(int price) => (_money- price) >= 0; 
 
         public string LovedOne { get; private set; }
+
+        public void die() => _life = 0;
+
+        public bool Equals(Joueur other) => other.ConnectionID == this.ConnectionID ? true : false;
     }
 }
