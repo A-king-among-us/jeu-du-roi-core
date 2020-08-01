@@ -56,6 +56,13 @@ namespace WebApp.Hubs
         public async Task GetPlayeur(string surname) => await Clients.Caller.SendAsync("GetPlayeur", new PublicJoueur(_ListDeJoueur.Find(e => e.Surname == surname))); 
         public async Task GetMySelf() => await Clients.Caller.SendAsync("Iam", _ListDeJoueur.Find(e => e.ConnectionID == Context.ConnectionId));
 
+        public async Task GetAllPlayeur()
+        {
+            List<PublicJoueur> publicjoueur = new List<PublicJoueur>;
+            foreach (Joueur treatedone in _ListDeJoueur)
+                publicjoueur.Add(new PublicJoueur(treatedone));
+            await Clients.Caller.SendAsync("ListPlayeur", publicjoueur);
+        }
         public override Task OnConnectedAsync()
         {
             return Task.CompletedTask;
