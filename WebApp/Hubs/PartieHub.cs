@@ -27,11 +27,11 @@ namespace WebApp.Hubs
             }
         }
 
-        
+
 
         public async Task SendMessage(string user, string message)
         {
-            await Clients.All.SendAsync("ReceiveMessage", user, message+" "+Context.ConnectionId);
+            await Clients.All.SendAsync("ReceiveMessage", user, message + " " + Context.ConnectionId);
         }
 
         public async Task InitJoueur(int agi, int str, int vit, int intel, int perce, string name, string surname)
@@ -44,7 +44,7 @@ namespace WebApp.Hubs
             else
                 await Clients.Caller.SendAsync("error", "Les stat transmise ne sont pas bonne");
 
-            if (_ListDeJoueur.Count > 15&&Game==null)
+            if (_ListDeJoueur.Count > 15 && Game == null)
             {
                 //ici en gros on lance la partie
                 Game = new Thread(Main);
@@ -53,6 +53,8 @@ namespace WebApp.Hubs
         }
         public async Task GetMaxPointstat() => await Clients.Caller.SendAsync("MaxPointStat", Joueur.MaxPointStat);
         public async Task GetMaxPerStat() => await Clients.Caller.SendAsync("MaxPerStat", Joueur.MaxPerStat);
+        public async Task GetPlayeur(string surname) => await Clients.Caller.SendAsync("GetPlayeur", new PublicJoueur(_ListDeJoueur.Find(e => e.Surname == surname))); 
+        public async Task GetMySelf() => await Clients.Caller.SendAsync("Iam", _ListDeJoueur.Find(e => e.ConnectionID == Context.ConnectionId));
 
         public override Task OnConnectedAsync()
         {

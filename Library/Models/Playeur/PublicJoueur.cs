@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Library.Models.Playeur
 {
-    class PublicJoueur
+    public class PublicJoueur
     {
         public PublicJoueur(Joueur WhoIwas)
         {
