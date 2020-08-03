@@ -29,9 +29,20 @@ namespace WebApp.Hubs
 
 
 
-        public async Task SendMessage(string user, string message)
+        public async Task SchoolTalk(string GroupName, string message)
         {
-            await Clients.All.SendAsync("ReceiveMessage", user, message + " " + Context.ConnectionId);
+            if (NewPartie.GroupName == GroupName)
+            {
+                await Clients.Group(GroupName).SendAsync("SchoolTalk",NewPartie.GetName(Context.ConnectionId),message);
+            }
+        }
+
+        public async Task MessageTalk(string Email, string message)
+        {
+            if (NewPartie.MailExist(Email))
+                await Clients.User(NewPartie.GetConnectIDfrommail(Email)).SendAsync("MessageTalk", NewPartie.GetName(Context.ConnectionId), message);
+            else
+                await Clients.Caller.SendAsync("MessageTalk", Email, "L'uttilisateur demander n'existe pas");
         }
 
         public async Task InitJoueur(int agi, int str, int vit, int intel, int perce, string name, string surname)

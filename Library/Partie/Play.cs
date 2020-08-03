@@ -53,6 +53,22 @@ namespace Library.Partie
 
         public Joueur GetMyself(string connectionID) => _ListDeJoueur.Find(e => e.ConnectionID == connectionID);
 
+        public string GetName(string ConnectID) => _ListDeJoueur.Find(e => e.ConnectionID == ConnectID).Name;
+
+        public string GetConnectIDfrommail(string Email) => _ListDeJoueur.Find(e => e.Email == Email).ConnectionID;
+        public bool MailExist(string Email)
+        {
+            try
+            {
+                _ListDeJoueur.Find(e => e.Email == Email);
+            }
+            catch
+            {
+                return false;
+            }
+            return true;
+        }
+
         public List<PublicJoueur> GetAllPlayeur()
         {
             List<PublicJoueur> publicjoueur = new List<PublicJoueur>();
