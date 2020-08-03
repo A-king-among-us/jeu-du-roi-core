@@ -7,11 +7,12 @@ namespace Library.Models.Playeur
         public string Name { get; private set; }
         public string Surname { get; private set; }
         public string ConnectionID { get; private set; }
+        public string Email => $"@{Surname}.{Name}";
         private bool IsKing = false;
 
         public Joueur(int agi, int str, int vit, int intel, int perce,string name,string surname,string connectionID)
         {
-            if((agi+str+vit+intel+perce)!=MaxPointStat)
+            if ((agi + str + vit + intel + perce) != MaxPointStat)
             {
                 _agi = agi;
                 _str = str;
@@ -22,6 +23,8 @@ namespace Library.Models.Playeur
                 Surname = surname;
                 ConnectionID = connectionID;
             }
+            else
+                throw new Exception("Les stat du joueur ne sont pas bonne");
             
         }
         public Joueur(string connectionID) => ConnectionID = connectionID;
@@ -61,7 +64,7 @@ namespace Library.Models.Playeur
         public int MaxHapiness => 100;
         public int MaxStress => 50;
         public int MaxLove => 50; //date a live ?
-        public int MaxStamina => _vit + _stamina + _str; //a équilibrer j'ai pas enore spéciallement d'idée
+        public int MaxStamina => _vit + _stamina + _str; //a équilibrer j'ai pas encore spéciallement d'idée
 
         public static int MaxPerStat = 20;
         public static int MaxPointStat = 40;
@@ -75,12 +78,28 @@ namespace Library.Models.Playeur
         public bool IsDepressed => _happiness < (MaxHapiness / 2);
         public bool IsOutOFMoney => _money<= 0;
 
+        /// <summary>
+        /// Permet de définir si un joueur peux acheter telle ou telle objet
+        /// </summary>
+        /// <param name="price">Prix de l'objet a acheter</param>
+        /// <returns></returns>
         public bool Canbuy(int price) => (_money- price) >= 0; 
 
+        /// <summary>
+        /// Nom du joueur aimer dans la partie
+        /// </summary>
         public string LovedOne { get; private set; }
 
+        /// <summary>
+        /// dis si oui ou non le joueur est mort
+        /// </summary>
         public void die() => _life = 0;
 
+        /// <summary>
+        /// permet de comparer si le joueur est le propriétaire de l'iD 
+        /// </summary>
+        /// <param name="other"> Autre joueur</param>
+        /// <returns></returns>
         public bool Equals(Joueur other) => other.ConnectionID == this.ConnectionID ? true : false;
     }
 }

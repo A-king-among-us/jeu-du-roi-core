@@ -4,6 +4,9 @@ using System.Text;
 
 namespace Library.Models.Playeur
 {
+    /// <summary>
+    /// Class représentatnt une version visible publiquement d'un joueur, permet de seulement communiquer les information accesible par le commun des mortel
+    /// </summary>
     public class PublicJoueur
     {
         public PublicJoueur(Joueur WhoIwas)
