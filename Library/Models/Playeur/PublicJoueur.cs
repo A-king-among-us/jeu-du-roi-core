@@ -11,6 +11,7 @@ namespace Library.Models.Playeur
     {
         public PublicJoueur(Joueur WhoIwas)
         {
+            Joueur test =WhoIwas ?? throw new ArgumentNullException();
             Name = WhoIwas.Name;
             Surname = WhoIwas.Surname;
             MaxLife = WhoIwas.MaxLife;

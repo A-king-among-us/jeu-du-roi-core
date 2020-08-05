@@ -27,8 +27,6 @@ namespace WebApp.Hubs
             }
         }
 
-
-
         public async Task SchoolTalk(string GroupName, string message)
         {
             if (NewPartie.GroupName == GroupName)
@@ -40,7 +38,7 @@ namespace WebApp.Hubs
         public async Task MessageTalk(string Email, string message)
         {
             if (NewPartie.MailExist(Email))
-                await Clients.User(NewPartie.GetConnectIDfrommail(Email)).SendAsync("MessageTalk", NewPartie.GetName(Context.ConnectionId), message);
+                await Clients.User(NewPartie.GetConnectIDfrommail(Email)).SendAsync("MessageTalk", NewPartie.GetEmailfromconnectID(Context.ConnectionId), message);
             else
                 await Clients.Caller.SendAsync("MessageTalk", Email, "L'uttilisateur demander n'existe pas");
         }

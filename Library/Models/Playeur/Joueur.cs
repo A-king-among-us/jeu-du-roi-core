@@ -12,7 +12,7 @@ namespace Library.Models.Playeur
 
         public Joueur(int agi, int str, int vit, int intel, int perce,string name,string surname,string connectionID)
         {
-            if ((agi + str + vit + intel + perce) != MaxPointStat)
+            if ((agi + str + vit + intel + perce) == MaxPointStat)
             {
                 _agi = agi;
                 _str = str;

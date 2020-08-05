@@ -55,6 +55,8 @@ namespace Library.Partie
 
         public string GetName(string ConnectID) => _ListDeJoueur.Find(e => e.ConnectionID == ConnectID).Name;
 
+        public string GetEmailfromconnectID(string connectid) => _ListDeJoueur.Find(e => e.ConnectionID == connectid).Email;
+
         public string GetConnectIDfrommail(string Email) => _ListDeJoueur.Find(e => e.Email == Email).ConnectionID;
         public bool MailExist(string Email)
         {
