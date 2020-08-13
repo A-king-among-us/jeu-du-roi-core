@@ -27,6 +27,8 @@ namespace WebApp.Hubs
             }
         }
 
+        public async Task Test() => NewPartie.NewPlayeur(10, 10, 10, 10, 0, "maxime", "leriche", "connectionID",2);
+
         public async Task SchoolTalk(string GroupName, string message)
         {
             if (NewPartie.GroupName == GroupName)
@@ -43,10 +45,13 @@ namespace WebApp.Hubs
                 await Clients.Caller.SendAsync("MessageTalk", Email, "L'uttilisateur demander n'existe pas");
         }
 
-        public async Task InitJoueur(int agi, int str, int vit, int intel, int perce, string name, string surname)
+        public async Task InitJoueur(int agi, int str, int vit, int intel, int perce, string name, string surname,int gender)
         {
-            if (NewPartie.NewPlayeur(agi,str,vit,intel,perce,name,surname,Context.ConnectionId))
+            if (NewPartie.NewPlayeur(agi,str,vit,intel,perce,name,surname,Context.ConnectionId,gender))
+            {
                 await Groups.AddToGroupAsync(Context.ConnectionId, NewPartie.GroupName);
+                await Clients.Caller.SendAsync("GroupName", NewPartie.GroupName);
+            }
             else
                 await Clients.Caller.SendAsync("error", "Les stat transmise ne sont pas bonne");
         }

@@ -2,6 +2,13 @@
 
 namespace Library.Models.Playeur
 {
+    public enum Genre
+    {
+        Unknow = 0,
+        Female = 1,
+        Male = 2,
+        TooMuchDifficulties = Male | Female
+    }
     public class Joueur
     {
         public string Name { get; private set; }
@@ -9,8 +16,10 @@ namespace Library.Models.Playeur
         public string ConnectionID { get; private set; }
         public string Email => $"@{Surname}.{Name}";
         private bool IsKing = false;
+        public Genre Gender { get; private set; }
 
-        public Joueur(int agi, int str, int vit, int intel, int perce,string name,string surname,string connectionID)
+
+        public Joueur(int agi, int str, int vit, int intel, int perce,string name,string surname,string connectionID,int gender)
         {
             if ((agi + str + vit + intel + perce) == MaxPointStat)
             {
@@ -22,6 +31,7 @@ namespace Library.Models.Playeur
                 Name = name;
                 Surname = surname;
                 ConnectionID = connectionID;
+                Gender = (Genre)gender;
             }
             else
                 throw new Exception("Les stat du joueur ne sont pas bonne");

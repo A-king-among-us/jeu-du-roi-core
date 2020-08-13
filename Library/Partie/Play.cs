@@ -26,13 +26,13 @@ namespace Library.Partie
         /// <param name="surname">Nom de famille du joueur</param>
         /// <param name="ConnexionID">Id de connexion du joueur</param>
         /// <returns></returns>
-        public bool NewPlayeur(int agi, int str, int vit, int intel, int perce, string name, string surname, string ConnexionID)
+        public bool NewPlayeur(int agi, int str, int vit, int intel, int perce, string name, string surname, string ConnexionID,int gender)
         {
             if ((agi + str + vit + intel + perce) != Joueur.MaxPointStat)
             {
                 try
                 {
-                    _ListDeJoueur.Add(new Joueur(agi, str, vit, intel, perce, name, surname, ConnexionID));
+                    _ListDeJoueur.Add(new Joueur(agi, str, vit, intel, perce, name, surname, ConnexionID,gender));
                 }
                 catch
                 {

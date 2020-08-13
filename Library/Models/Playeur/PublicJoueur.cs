@@ -18,6 +18,7 @@ namespace Library.Models.Playeur
             Life = WhoIwas.Life;
             Hapiness = WhoIwas.Hapiness;
             IsDead = WhoIwas.IsDead;
+            Gender = WhoIwas.Gender;
         }
         public string Name { get; private set; }
         public string Surname { get; private set; }
@@ -27,5 +28,6 @@ namespace Library.Models.Playeur
         public int Life { get; private set; }
         public int Hapiness { get; private set; }
         public bool IsDead { get; private set; }
+        public Genre Gender { get; private set; }
     }
 }
