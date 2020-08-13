@@ -27,8 +27,13 @@ namespace WebApp.Hubs
             }
         }
 
-        public async Task Test() => NewPartie.NewPlayeur(10, 10, 10, 10, 0, "maxime", "leriche", "connectionID",2);
-
+        public async Task GetTest()
+        {
+            if (NewPartie.NewPlayeur(10, 10, 10, 10, 0, "maxime", "leriche", "connectionID", 2))
+                await Clients.Caller.SendAsync("GetTest", NewPartie.GetAllPlayeur());
+            else
+                await Clients.Caller.SendAsync("Error", "Erreur création du perso", "je suis en train de me faire chier a creer un message de status pour une fonction que je vais virer dans 5minute.... masochisme quand tu me tient ptn");
+        }
         public async Task SchoolTalk(string GroupName, string message)
         {
             if (NewPartie.GroupName == GroupName)
