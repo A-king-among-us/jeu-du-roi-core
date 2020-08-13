@@ -28,7 +28,7 @@ namespace Library.Partie
         /// <returns></returns>
         public bool NewPlayeur(int agi, int str, int vit, int intel, int perce, string name, string surname, string ConnexionID,int gender)
         {
-            if ((agi + str + vit + intel + perce) != Joueur.MaxPointStat)
+            if ((agi + str + vit + intel + perce) == Joueur.MaxPointStat && PlayerDoesntExist(surname,ConnexionID))
             {
                 try
                 {
@@ -51,6 +51,7 @@ namespace Library.Partie
         /// <returns></returns>
         public PublicJoueur GetPlayeur(string surname) => new PublicJoueur(_ListDeJoueur.Find(e => e.Surname == surname));
 
+        public bool PlayerDoesntExist(string surname, string ConnexionID) => _ListDeJoueur.Find(e => e.Surname == surname || e.ConnectionID == ConnexionID)==null;
         public Joueur GetMyself(string connectionID) => _ListDeJoueur.Find(e => e.ConnectionID == connectionID);
 
         public string GetName(string ConnectID) => _ListDeJoueur.Find(e => e.ConnectionID == ConnectID).Name;
