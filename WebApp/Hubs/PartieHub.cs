@@ -58,7 +58,7 @@ namespace WebApp.Hubs
                 await Clients.Caller.SendAsync("GroupName", NewPartie.GroupName);
             }
             else
-                await Clients.Caller.SendAsync("error", "Les stat transmise ne sont pas bonne");
+                await Clients.Caller.SendAsync("Error", "Erreur création du perso", "Les stat transmise ne sont pas bonne");
         }
         public async Task GetMaxPointstat() => await Clients.Caller.SendAsync("MaxPointStat", Joueur.MaxPointStat);
         public async Task GetMaxPerStat() => await Clients.Caller.SendAsync("MaxPerStat", Joueur.MaxPerStat);
