@@ -14,9 +14,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\max_l\\Desktop\\Tuto signalr\\JeuDuRoi\\Library\\Library.csproj",
-      "projectName": "Library",
-      "projectPath": "C:\\Users\\max_l\\Desktop\\Tuto signalr\\JeuDuRoi\\Library\\Library.csproj",
+      "projectUniqueName": "C:\\Users\\max_l\\Desktop\\Tuto signalr\\JeuDuRoi\\Library\\1.Library.csproj",
+      "projectName": "1.Library",
+      "projectPath": "C:\\Users\\max_l\\Desktop\\Tuto signalr\\JeuDuRoi\\Library\\1.Library.csproj",
       "packagesPath": "C:\\Users\\max_l\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\max_l\\Desktop\\Tuto signalr\\JeuDuRoi\\Library\\obj\\",
       "projectStyle": "PackageReference",

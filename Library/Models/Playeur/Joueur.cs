@@ -15,7 +15,7 @@ namespace Library.Models.Playeur
         public string Surname { get; private set; }
         public string ConnectionID { get; private set; }
         public string Email => $"@{Surname}.{Name}";
-        private bool IsKing = false;
+        public bool IsKing = false;
         public Genre Gender { get; private set; }
 
 

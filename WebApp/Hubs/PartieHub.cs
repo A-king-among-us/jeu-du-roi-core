@@ -30,7 +30,7 @@ namespace WebApp.Hubs
         public async Task GetTest()
         {
             if (NewPartie.NewPlayeur(10, 10, 10, 10, 0, "maxime", "leriche", "connectionID", 2))
-                await Clients.Caller.SendAsync("GetTest", NewPartie.GetAllPlayeur());
+                await Clients.Caller.SendAsync("GetTest", NewPartie.GetAllPPlayeur());
             else
                 await Clients.Caller.SendAsync("Error", "Erreur création du perso", "je suis en train de me faire chier a creer un message de status pour une fonction que je vais virer dans 5minute.... masochisme quand tu me tient ptn");
         }
@@ -64,7 +64,8 @@ namespace WebApp.Hubs
         public async Task GetMaxPerStat() => await Clients.Caller.SendAsync("MaxPerStat", Joueur.MaxPerStat);
         public async Task GetPlayeur(string surname) => await Clients.Caller.SendAsync("GetPlayeur", NewPartie.GetPlayeur(surname)); 
         public async Task GetMySelf() => await Clients.Caller.SendAsync("Iam", NewPartie.GetMyself(Context.ConnectionId));
-        public async Task GetAllPlayeur() => await Clients.Caller.SendAsync("ListPlayeur", NewPartie.GetAllPlayeur());
+        public async Task GetAllPlayeur() => await Clients.Caller.SendAsync("ListPlayeur", NewPartie.GetAllPPlayeur());
+        public async Task GetAllKPlayeur() => await Clients.Caller.SendAsync("ListAsKingPlayeur", NewPartie.GetAllKPlayeur(Context.ConnectionId));
 
         public override Task OnConnectedAsync()
         {

@@ -71,14 +71,16 @@ namespace Library.Partie
             }
             return true;
         }
+        public bool IsKing(string contextid) => _ListDeJoueur.Find(e => e.ConnectionID == contextid).IsKing;
 
-        public List<PublicJoueur> GetAllPlayeur()
+        public List<PublicJoueur> GetAllPPlayeur()
         {
             List<PublicJoueur> publicjoueur = new List<PublicJoueur>();
             foreach (Joueur treatedone in _ListDeJoueur)
                 publicjoueur.Add(new PublicJoueur(treatedone));
             return publicjoueur;
         }
+        public List<Joueur> GetAllKPlayeur(string ConnectionID) => IsKing(ConnectionID) ? _ListDeJoueur : new List<Joueur>();
 
         public string DisconnectPlayeur(string ConnectID)
         {
