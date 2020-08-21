@@ -58,7 +58,12 @@ namespace WebApp.Hubs
                 await Clients.Caller.SendAsync("GroupName", NewPartie.GroupName);
             }
             else
-                await Clients.Caller.SendAsync("Error", "Erreur création du perso", "Les stat transmise ne sont pas bonne");
+            {
+                string message = "Les stat transmise ne sont pas bonne"+(agi + str + vit + intel + perce);
+                if (NewPartie.PlayerDoesntExist(surname, Context.ConnectionId))
+                    message = "Sois le joueur a déja un perso sois le nom de famille est déja pris";
+                await Clients.Caller.SendAsync("Error", "Erreur création du perso", message);
+            }
         }
         public async Task GetMaxPointstat() => await Clients.Caller.SendAsync("MaxPointStat", Joueur.MaxPointStat);
         public async Task GetMaxPerStat() => await Clients.Caller.SendAsync("MaxPerStat", Joueur.MaxPerStat);

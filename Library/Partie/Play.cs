@@ -1,4 +1,5 @@
 ﻿using Library.Models.Playeur;
+using System;
 using System.Collections.Generic;
 
 namespace Library.Partie
@@ -28,13 +29,13 @@ namespace Library.Partie
         /// <returns></returns>
         public bool NewPlayeur(int agi, int str, int vit, int intel, int perce, string name, string surname, string ConnexionID,int gender)
         {
-            if ((agi + str + vit + intel + perce) == Joueur.MaxPointStat && PlayerDoesntExist(surname,ConnexionID))
+            if ((agi + str + vit + intel + perce) == Joueur.MaxPointStat+5 && PlayerDoesntExist(surname,ConnexionID))
             {
                 try
                 {
                     _ListDeJoueur.Add(new Joueur(agi, str, vit, intel, perce, name, surname, ConnexionID,gender));
                 }
-                catch
+                catch(Exception ee)
                 {
                     return false;
                 }
