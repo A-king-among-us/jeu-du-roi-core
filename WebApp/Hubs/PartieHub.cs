@@ -20,7 +20,7 @@ namespace WebApp.Hubs
 
         public async void Main()
         {
-            await Clients.All.SendAsync("Start", "true");
+            await Clients.All.SendAsync("PartieStatus", true);
             lock (Locker)
             {
 
