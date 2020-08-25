@@ -14,6 +14,7 @@ COPY WebApp/. ./WebApp/
 COPY Library/. ./Library/
 COPY TestLibrary/. ./TestLibrary/
 WORKDIR /source/WebApp
+RUN dotnet build
 RUN dotnet publish -c release -o /app --no-restore
 
 # final stage/image
