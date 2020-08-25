@@ -2,7 +2,7 @@ git pull
 docker container stop akaucore
 docker container rm akaucore
 docker build -t batlefroc/akaucore .
-docker run -p 8081:80 -d --network weebo --name akaucore batlefroc/akaucore 
+docker run -p 8082:80 -d --network weebo --name akaucore batlefroc/akaucore 
 docker network connect weebo akaucore
 sleep 2s
 docker logs akaucore
