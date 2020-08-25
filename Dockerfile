@@ -12,6 +12,7 @@ RUN dotnet restore
 # copy everything else and build app
 COPY WebApp/. ./WebApp/
 COPY Library/. ./Library/
+COPY TestLibrary/. ./TestLibrary/
 WORKDIR /source/WebApp
 RUN dotnet publish -c release -o /app --no-restore
 
