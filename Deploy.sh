@@ -8,7 +8,7 @@ sleep 2s
 docker logs akaucore
 
 git_message=$(git log --oneline -n 1)
-dock_message=$(docker logs akaucore)
+dock_message=$(docker logs akaucore| tail -1)
 messagefinal='"GIT: '$git_message"\nDocker: "$dock_message'"'
 export WEBHOOK_URL="https://discordapp.com/api/webhooks/735175356054765618/MdOM3hDJPPEi1HBnCDJWhPQNK78-dOShV_mbu2dR4PfQfUZd_m0T3AMff670UMgqKCr4"
 
