@@ -35,7 +35,7 @@ namespace Library.Partie
                 {
                     _ListDeJoueur.Add(new Joueur(agi, str, vit, intel, perce, name, surname, ConnexionID,gender));
                 }
-                catch(Exception ee)
+                catch
                 {
                     return false;
                 }
