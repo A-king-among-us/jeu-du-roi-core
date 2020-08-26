@@ -23,8 +23,9 @@ namespace WebApp
                                   builder =>
                                   {
                                       builder.WithOrigins("http://localhost:3000",//Le client ReactJS
-                                                          "http://localhost:3000",//Le client ReactJS
-                                                          "https://localhost:44395") //l'appli en elle même
+                                                          "https://akau.weebo.fr",
+                                                          "https://localhost:44395",
+                                                          "https://akaucore.weebo.fr")
                                             .WithMethods("GET", "POST")
                                             .AllowCredentials()
                                             .AllowAnyHeader();
