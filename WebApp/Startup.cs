@@ -15,6 +15,10 @@ namespace WebApp
     {
         // This method gets called by the runtime. Use this method to add services to the container.
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
+        /*Attention quand on est derriére un reverse proxy nginx penser a mettre ces set header
+         * proxy_set_header Connection "Upgrade";
+         * proxy_set_header Upgrade $http_upgrade;
+         */
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddCors(options =>
