@@ -2,6 +2,7 @@ variables:
   LATEST_VER: batlefroc/akaucore:latest
   CURRENT_VER: batlefroc/akaucore:1.1
   CONTAINER_NAME: akaucore
+  CONTAINER_NAME_DEBUG: akaucoredebug
   WEBHOOK_URL: "https://discordapp.com/api/webhooks/735175356054765618/MdOM3hDJPPEi1HBnCDJWhPQNK78-dOShV_mbu2dR4PfQfUZd_m0T3AMff670UMgqKCr4"
 
 include:
@@ -23,7 +24,8 @@ Lint:
     - kimsufi
   script:
     - dotnet tool update -g dotnet-format
-    - dotnet format --check
+    - $HOME/.dotnet/tools/dotnet-format --check
+    - dotnet $HOME/.dotnet/tools/dotnet-format
 
 Build:
   stage: build
@@ -41,6 +43,8 @@ StopOld:
   stage: stopOld
   image: docker:latest
   allow_failure: true
+  rules:
+    - if: '$CI_COMMIT_BRANCH == "master"'
   tags: 
     - kimsufi
   needs:
@@ -49,11 +53,27 @@ StopOld:
     - docker container stop $CONTAINER_NAME
     - docker container rm $CONTAINER_NAME
 
+StopOldDebug:
+  stage: stopOld
+  image: docker:latest
+  allow_failure: true
+  rules:
+    - if: '$CI_COMMIT_BRANCH != "master"'
+  tags: 
+    - kimsufi
+  needs:
+    - Build
+  script:
+    - docker container stop $CONTAINER_NAME_DEBUG
+    - docker container rm $CONTAINER_NAME_DEBUG
+
 Run:
   stage: run
   image: docker:latest
   services:
     - docker:dind
+  rules:
+    - if: '$CI_COMMIT_BRANCH == "master"'
   before_script:
     - docker info
   tags: 
@@ -63,14 +83,28 @@ Run:
   script : 
     - docker run -d --network weebo --name $CONTAINER_NAME -p 8082:80 $LATEST_VER
 
+RunDebug:
+  stage: run
+  image: docker:latest
+  services:
+    - docker:dind
+  rules:
+    - if: '$CI_COMMIT_BRANCH != "master"'
+  before_script:
+    - docker info
+  tags: 
+    - kimsufi
+  needs:
+    - Build
+  script : 
+    - docker run -d --network weebo --name $CONTAINER_NAME_DEBUG -p 8082:80 $LATEST_VER
+
 Hook:
   stage: hook
   image: ubuntu
   allow_failure: true
   tags:
     - kimsufi
-  needs:
-    - Run
   script:
     - apt update
     - apt install curl -y
@@ -86,7 +120,7 @@ Test:
   tags:
     - kimsufi
   script:
-    - dotnet test ./TestLibrary/3.TestLibrary.csproj --blame-hang-timeout 30s --logger "console;verbosity=detailed"
+    - dotnet test ./TestLibrary/3.TestLibrary.csproj --logger "console;verbosity=detailed"
 
 code_quality:
   stage: test
