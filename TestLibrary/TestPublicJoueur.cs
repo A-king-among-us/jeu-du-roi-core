@@ -9,7 +9,7 @@ namespace TestLibrary
         [Fact]
         public void InstanciatePublicJoueur()
         {
-            Joueur jojo = new Joueur(10, 10, 10, 10, 0, "max", "leriche", "je suis un connectionID",0);
+            Joueur jojo = new Joueur(10, 10, 10, 10, 5, "max", "leriche", "je suis un connectionID",0);
             Assert.Equal(jojo.Name,new PublicJoueur(jojo).Name);
             Assert.Equal(jojo.Surname, new PublicJoueur(jojo).Surname);
             Assert.Equal(jojo.Email, new PublicJoueur(jojo).Email);

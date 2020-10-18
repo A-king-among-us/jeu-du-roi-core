@@ -87,7 +87,7 @@ namespace Library.Partie
         {
             if (_ListDeJoueur.Contains(new Joueur(ConnectID)))
             {
-                _ListDeJoueur.Find(e => e.ConnectionID == ConnectID).die();
+                _ListDeJoueur.Find(e => e.ConnectionID == ConnectID).KillThePlayer();
                 return $"{ _ListDeJoueur.Find(e => e.ConnectionID == ConnectID).Name} Est mort en fuillant... il a fait une chute de son lits"; //ajouter des message random
             }
             else
