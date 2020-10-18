@@ -97,7 +97,7 @@ RunDebug:
   needs:
     - Build
   script : 
-    - docker run -d --network weebo --name $CONTAINER_NAME_DEBUG -p 8082:80 $LATEST_VER
+    - docker run -d --network weebo --name $CONTAINER_NAME_DEBUG -p 9082:80 $LATEST_VER
 
 Hook:
   stage: hook
